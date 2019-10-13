@@ -39,8 +39,35 @@ public class Main {
                     System.out.println("Employee: "+employee.getName()+
                             " has been added successfully");
                     break;
+                case 9:
+                    System.out.println("Enter Employee name: ");
+                    Scanner emp = new Scanner(System.in);
+                    String name = emp.nextLine();
+                    String result = search(name,"employees.txt");
+                    System.out.println(result);
+                    break;
+                case 10:
+                    System.out.println("Enter Student name: ");
+                    Scanner stu = new Scanner(System.in);
+                    String stuName = stu.nextLine();
+                    String res = search(stuName,"students.txt");
+                    System.out.println(res);
+                    break;
+                case 11:
+                    System.out.println("Enter Course name: ");
+                    Scanner course = new Scanner(System.in);
+                    String coureName = course.nextLine();
+                    String s = search(coureName,"course.txt");
+                    System.out.println(s);
+                    break;
+                case 12:
+                    System.out.println("Enter Doctor name: ");
+                    Scanner in = new Scanner(System.in);
+                    String doctorName = in.nextLine();
+                    String doc = search(doctorName,"doctor.txt");
+                    System.out.println(doc);
+                    break;
                 default:
-                    System.out.println("Bye Bye..!");
                     return;
             }
         }
@@ -55,12 +82,26 @@ public class Main {
         System.out.println("6-  add new doctor");
         System.out.println("7-  add new student");
         System.out.println("8-  add new employee");
+        System.out.println("9-  search for employee");
+        System.out.println("10- search for Student");
+        System.out.println("11- search for Course");
+        System.out.println("12- search for Doctor");
         System.out.print("\n-->Enter your choice: $");
         Scanner choice = new Scanner(System.in);
         int getChoice = choice.nextInt();
         return getChoice;
     }
-
+    public static String search(String arg,String fileName) throws IOException{
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            if(line.contains(arg)){
+                return line;
+            }
+        }
+        return "not found!";
+    }
     public static Student addNewStudent() throws IOException{
         Scanner in = new Scanner(System.in);
         System.out.println("Enter Student id: ");
